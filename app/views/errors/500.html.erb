@@ -1,0 +1,12 @@
+<%
+   @title = "システムエラー"
+%>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
+      <%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
+      <%= link_to "戻る", :back %>
+    </div>
+  </div>
+</div>

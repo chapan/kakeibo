@@ -1,0 +1,154 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
+      <%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-top: 10px">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to '前月', {action: :monthly, year: @prev.year, month: @prev.month}, {class: "btn btn-default btn-sm"} %>　
+      <%= link_to '今日', {action: :index}, {class: "btn btn-default btn-sm"} %>　
+      <%= link_to '翌月', {action: :monthly, year: @to.year, month: @to.month}, {class: "btn btn-default btn-sm"} %>　
+      <%= link_to '月次リスト', :summary_kakeis, class: "btn btn-default btn-sm" %>　
+      <%= link_to '年次リスト', :yearly_kakeis, class: "btn btn-default btn-sm" %>　
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <%= form_for @new_kakei do |f| %>
+    <table class="table-condensed">
+      <tbody>
+      <tr class="form-group form-inline">
+        <th><%= f.label :use_date, '対象年月日' %></th>
+        <td>
+          <%= f.date_select :use_date,
+                        {
+                                start_year: Time.now.year - 2,
+                                end_year: Time.now.year + 2,
+                                use_two_digit_numbers: true,
+                                date_separator: ' / '
+                        }, {class: "form-control"}
+          %>
+        </td>
+      </tr>
+
+      <tr class="form-group">
+        <th><%= f.label :category_id, '分類' %></th>
+        <td><%= f.collection_select :category_id, Category.where(usage: 1), :id, :name, {include_blank: true}, {class: "form-control", required: true} %></td>
+      </tr>
+
+      <tr class="form-group">
+        <th><%= f.label :naiyou, '内容' %></th>
+        <td><%= f.text_field :naiyou, {class: "form-control", required: true} %></td>
+      </tr>
+
+      <tr class="form-group">
+        <th><%= f.label :kingaku, '金額' %></th>
+        <td><%= f.number_field :kingaku, {min: 1, autocomplete: :off, class: "form-control", required: true} %></td>
+      </tr>
+
+      <tr class="form-group form-inline" >
+        <th><%= f.label :credit_flag, 'クレジットカード' %></th>
+        <td><%= f.check_box :credit_flag, {class: "form-control"} %></td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <%= f.submit '登録', name: :regist, class: "btn btn-default btn-sm" %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+
+<div class="container" style="margin-top: 20px">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= "#{@from.strftime("%Y年%m月")}　#{@kakeis.count}件の情報があります。" %>
+    </div>
+  </div>
+  <table class="table-bordered table-striped table-hover table-condensed" style="background-color: white;border: solid 1px #000000">
+    <thead>
+      <tr>
+        <th width="100">日付</th>
+        <th width="80">分類</th>
+        <th width="300">内容</th>
+        <th width="70">収入</th>
+        <th width="70">出費</th>
+        <th width="60">CC</th>
+        <th width="60">　</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <%
+       syunyu = 0
+       syupi = 0
+       card = 0
+    %>
+      <% @kakeis.each do |kakei| %>
+        <tr>
+          <td style="text-align: center;white-space: nowrap"> <%= kakei.use_date %> </td>
+          <td style="white-space: nowrap"> <%= kakei.category.name %> </td>
+          <td> <%= kakei.naiyou %> </td>
+          <td style="text-align: right"> <%= if kakei.category.id == 7 || kakei.category.id == 10 then number_to_currency(kakei.kingaku) end %> </td>
+          <td style="text-align: right"> <%= unless kakei.category.id == 7 || kakei.category.id == 10 then number_to_currency(kakei.kingaku) end %> </td>
+          <td style="text-align: center"> <%= if kakei.credit_flag == 1 then "●" end %> </td>
+          <td style="text-align: center"> <%= link_to '削除', kakei, method: :delete, class: "btn btn-default btn-xs", data: {confirm: "#{kakei.naiyou}:#{kakei.kingaku.to_s}円を削除します。"} %> </td>
+        </tr>
+        <%
+           @summary[kakei.category_id] += kakei.kingaku
+           if kakei.category.id == 7 || kakei.category.id == 10
+             syunyu += kakei.kingaku
+           else
+             syupi += kakei.kingaku
+             if kakei.credit_flag == 1
+               card += kakei.kingaku
+             end
+           end
+        %>
+      <% end %>
+    </tbody>
+    <tfoor>
+      <tr>
+        <td colspan="3" style="text-align: right">合計</td>
+        <td style="text-align: right"><%= number_to_currency(syunyu) %></td>
+        <td style="text-align: right"><%= number_to_currency(syupi) %></td>
+        <td style="text-align: right"><%= number_to_currency(card) %></td>
+        <td>　</td>
+      </tr>
+    </tfoor>
+  </table>
+</div>
+<div class="container" style="margin-top: 20px;margin-bottom: 20px">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= "#{@from.strftime("%Y年%m月")}　サマリー" %>
+    </div>
+  </div>
+  <table class="table-bordered table-striped table-hover table-condensed" style="background-color: white;border: solid 1px #000000">
+    <thead>
+    <tr>
+      <th width="100">分類</th>
+      <th width="100">金額</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @categories.each do |category| %>
+      <% if @summary[category.id] != 0 %>
+        <tr>
+          <td> <%= category.name %> </td>
+          <td style="text-align: right"> <%= "#{number_to_currency(@summary[category.id])}円" %> </td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
