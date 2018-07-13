@@ -2,9 +2,17 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: "rails"
-  password: "!password"
+  username: <%= Settings.database[:username]%>
+  password: <%= Settings.database[:password]%>
   host: localhost
+
+development:
+  <<: *default
+  database: railsapp_development
+
+test:
+  <<: *default
+  database: railsapp_test
 
 production:
   <<: *default
