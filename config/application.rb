@@ -8,18 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Railsapp
   class Application < Rails::Application
-
-    config.time_zone = 'Tokyo'
-    config.generators do |g|
-      g.helper false
-      g.assets false
-      g.test_framework :rspec, fixture: true
-      g.fixture_replacement :factory_bot, dir: "spec/factories"
-      g.controller_specs false
-      g.view_specs false
-    end
-    config.active_record.default_timezone = :local
-
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -34,11 +24,20 @@ module Railsapp
     # config.i18n.default_locale = :de
     config.i18n.default_locale = :ja
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-
     config.assets.precompile += ['chapan.css']
 
 #    config.colorize_logging = false
+
+    config.time_zone = 'Tokyo'
+    config.generators do |g|
+      g.helper false
+      g.assets false
+      g.test_framework :rspec, fixture: true
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
+      g.controller_specs false
+      g.view_specs false
+    end
+    config.active_record.default_timezone = :local
+
   end
 end

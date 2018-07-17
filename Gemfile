@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.7'
+gem 'rails', '5.1.6'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.5'
-gem 'autoprefixer-rails'
+gem 'autoprefixer-rails', '~> 8.6.5'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -39,6 +39,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'annotate'
+  gem 'listen'
 end
 
 group :development, :test do
