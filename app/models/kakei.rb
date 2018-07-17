@@ -12,7 +12,7 @@
 #  updated_at  :datetime         not null
 #
 
-class Kakei < ActiveRecord::Base
+class Kakei < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
 #  belongs_to :category

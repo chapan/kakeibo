@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -14,7 +14,7 @@ module Railsapp
       g.helper false
       g.assets false
       g.test_framework :rspec, fixture: true
-      g.fixture_replacement :factory_girl, dir: "spec/factories"
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
       g.controller_specs false
       g.view_specs false
     end
@@ -39,6 +39,6 @@ module Railsapp
 
     config.assets.precompile += ['chapan.css']
 
-    config.colorize_logging = false
+#    config.colorize_logging = false
   end
 end
