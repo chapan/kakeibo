@@ -25,7 +25,8 @@ class Kakei::KakeisController < Kakei::BaseKakeiController
   end
   def destroy
     Kakei.destroy(params[:id])
-    redirect_to :back, :notice => "削除しました。"
+    #redirect_to_ :back, :notice => "削除しました。"
+    redirect_back fallback_location: {action: :index}, :notice => "削除しました。"
   end
   def redirect
     redirect_to :kakeis
