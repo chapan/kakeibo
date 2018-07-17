@@ -1,9 +1,9 @@
-RAILS_ROOT = File.expand_path("../..", __FILE__)
+APP_ROOT = File.expand_path("../..", __FILE__)
 
-working_directory "#{RAILS_ROOT}"
-pid               "#{RAILS_ROOT}/tmp/pids/unicorn.pid"
-stderr_path       "#{RAILS_ROOT}/log/unicorn.log"
-stdout_path       "#{RAILS_ROOT}/log/unicorn.log"
+working_directory "#{APP_ROOT}"
+pid               "#{APP_ROOT}/tmp/pids/unicorn.pid"
+stderr_path       "#{APP_ROOT}/log/unicorn.log"
+stdout_path       "#{APP_ROOT}/log/unicorn.log"
 
 #listen "/tmp/unicorn.sock"
 listen 3000
