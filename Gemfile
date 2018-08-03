@@ -62,3 +62,4 @@ end
 gem 'active_hash'
 gem 'config'
 gem 'bootsnap'
+gem 'twitter'
