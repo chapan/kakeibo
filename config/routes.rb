@@ -13,13 +13,13 @@ Rails.application.routes.draw do
     end
   end
 
-  scope :abare, module: :twitter do
-    resources :tweets, only: [:new, :create] do
-      collection do
-        get 'post'
-      end
-    end
-  end
+  # scope :abare, module: :twitter do
+  #   resources :tweets, only: [:new, :create] do
+  #     collection do
+  #       get 'post'
+  #     end
+  #   end
+  # end
 
   # 404例外用
   get  '*not_found' => 'application#routing_error'
