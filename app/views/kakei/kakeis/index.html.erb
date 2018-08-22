@@ -15,6 +15,7 @@
       <%= link_to '翌月', {action: :monthly, year: @to.year, month: @to.month}, {class: "btn btn-default btn-sm"} %>　
       <%= link_to '月次リスト', :summary_kakeis, class: "btn btn-default btn-sm" %>　
       <%= link_to '年次リスト', :yearly_kakeis, class: "btn btn-default btn-sm" %>　
+      <%= link_to 'ツイッター更新', :update_profile, method: :post, class: "btn btn-default btn-sm" %>　
     </div>
   </div>
 </div>

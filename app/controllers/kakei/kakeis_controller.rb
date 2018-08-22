@@ -17,20 +17,17 @@ class Kakei::KakeisController < Kakei::BaseKakeiController
       render :index
     end
   end
-  def edit
 
-  end
-  def update
-
-  end
   def destroy
     Kakei.destroy(params[:id])
     #redirect_to_ :back, :notice => "削除しました。"
     redirect_back fallback_location: {action: :index}, :notice => "削除しました。"
   end
+
   def redirect
     redirect_to :kakeis
   end
+
   def summary
 
     sql = <<-SQL
@@ -60,6 +57,7 @@ ORDER BY DATE_FORMAT(use_date, '%Y-%m') desc
     @summary = Kakei.find_by_sql(sql)
 
   end
+
   def monthly
     year = params[:year].to_i
     month = params[:month].to_i
@@ -73,6 +71,7 @@ ORDER BY DATE_FORMAT(use_date, '%Y-%m') desc
     render :index
 
   end
+
   def yearly
 
     sql = <<-SQL
