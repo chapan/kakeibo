@@ -18,7 +18,7 @@ class Twitter::TweetsController < BaseController
       # プロフィール更新
       twitter.update_profile(name: name, description: description)
       # ツイート
-      twitter.tweet("現在のレベル #{charge_lv}\n次のレベルまで #{charge_exp}")
+      twitter.tweet("現在のレベル #{charge_lv}\n次のレベルまで #{REQUIRE_EXP - charge_exp}")
 
       redirect_to :kakeis, flash: {notice: "ツイッターを更新しました。"}
     rescue => ex
