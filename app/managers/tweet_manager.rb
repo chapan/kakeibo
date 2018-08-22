@@ -24,9 +24,10 @@ class TweetManager < Manager
   # profile_link_color テーマカラー(#FFFFFFで指定)
   def update_profile(name: nil, description: nil, url: nil, location: nil, profile_link_color: nil)
     options = {}
-    [name, description, url, location, profile_link_color].each do |option|
-      options[option] = option if option.present?
+    self.method(__callee__).parameters.map do |arg_type, arg|
+      options[arg] = eval(arg.to_s) if eval(arg.to_s).present?
     end
+
     @twitter.update_profile(options) if options.length > 0
   end
 
