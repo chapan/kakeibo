@@ -22,7 +22,7 @@ class Twitter::TweetsController < BaseController
 
       redirect_to :kakeis, flash: {notice: "ツイッターを更新しました。"}
     rescue => ex
-      redirect_to :kakeis, flash: {alert: "エラーが発生しました。\n #{ex.message}"}
+      redirect_to :kakeis, flash: {alert: "エラーが発生しました。\n#{ex.message}"}
     end
   end
 
