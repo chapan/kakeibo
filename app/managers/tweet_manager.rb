@@ -12,7 +12,12 @@ class TweetManager < Manager
   # ツイートする
   # message ツイート内容
   def tweet(message)
-    @twitter.update(message)
+    if Rails.env.production?
+      res = @twitter.update(message)
+      Rails.logger.info("ツイッター投稿:#{res}")
+    else
+      Rails.logger.debug("(Debug)ツイッター投稿:#{message}")
+    end
   end
 
   # プロフィールの変更
@@ -28,7 +33,14 @@ class TweetManager < Manager
       options[arg] = eval(arg.to_s) if eval(arg.to_s).present?
     end
 
-    @twitter.update_profile(options) if options.length > 0
+    if Rails.env.production?
+      if options.length > 0
+        res = @twitter.update_profile(options)
+        Rails.logger.info("ツイッタープロフィール更新:#{res}")
+      end
+    else
+      Rails.logger.debug("(Debug)ツイッタープロフィール更新:#{options}")
+    end
   end
 
 end

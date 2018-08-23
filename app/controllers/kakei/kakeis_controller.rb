@@ -9,7 +9,10 @@ class Kakei::KakeisController < Kakei::BaseKakeiController
 
     begin
       @new_kakei.save!
-      #redirect_to :kakeis, flash: {notice: "登録しました。"}
+
+      # ツイッター更新
+      update_twitter_profile if @new_kakei.category_id == Category.category_id.social_game.value
+
       redirect_to({action: :monthly, year: @new_kakei.use_date.year, month: @new_kakei.use_date.month, day: @new_kakei.use_date.day}, flash: {notice: "登録しました。"})
     rescue => ex
       display(@new_kakei.use_date)
@@ -20,7 +23,6 @@ class Kakei::KakeisController < Kakei::BaseKakeiController
 
   def destroy
     Kakei.destroy(params[:id])
-    #redirect_to_ :back, :notice => "削除しました。"
     redirect_back fallback_location: {action: :index}, :notice => "削除しました。"
   end
 
@@ -113,7 +115,6 @@ ORDER BY DATE_FORMAT(use_date, '%Y') desc
   def display(from=Date.today)
     @categories = Category.all
 
-    #@from = Time.now.at_beginning_of_month
     @from = from.at_beginning_of_month
     @to   = @from + 1.month
     @prev = @from - 1.day
@@ -128,4 +129,15 @@ ORDER BY DATE_FORMAT(use_date, '%Y') desc
     @new_kakei = Kakei.new(use_date: from)
   end
 
+  def update_twitter_profile
+    charge_lv, charge_exp = CalcManager.new.calc_twitter_status_param
+    name = Settings.twitter.name_base + charge_lv.to_s
+    description = Settings.twitter.description_base + (charge_exp).to_s
+
+    twitter = TweetManager.new
+
+    # プロフィール更新
+    twitter.update_profile(name: name, description: description)
+
+  end
 end
