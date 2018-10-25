@@ -36,7 +36,7 @@ class TweetManager < Manager
     if Rails.env.production?
       if options.length > 0
         res = @twitter.update_profile(options)
-        Rails.logger.info("ツイッタープロフィール更新:#{res}")
+        Rails.logger.info("ツイッタープロフィール更新:#{options}")
       end
     else
       Rails.logger.debug("(Debug)ツイッタープロフィール更新:#{options}")

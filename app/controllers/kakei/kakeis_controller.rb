@@ -22,8 +22,20 @@ class Kakei::KakeisController < Kakei::BaseKakeiController
   end
 
   def destroy
-    Kakei.destroy(params[:id])
-    redirect_back fallback_location: {action: :index}, :notice => "削除しました。"
+    begin
+      kakei = Kakei.find(params[:id])
+      category_id = kakei.category_id
+      kakei.destroy!
+
+      # ツイッター更新
+      update_twitter_profile if category_id == Category.category_id.social_game.value
+
+      redirect_back fallback_location: {action: :index}, :notice => "削除しました。"
+    rescue => ex
+      display
+      flash.now[:alert] = ex.message
+      render :index
+    end
   end
 
   def redirect
