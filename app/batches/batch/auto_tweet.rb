@@ -17,7 +17,7 @@ class Batch::AutoTweet < Batch
     message = "#{Settings.twitter.month_result_base}#{month_total.to_s(:delimited)}円"
 
     # 年が変わった場合は年額も一緒にツイート
-    if date.year == date.last_month.year
+    if date.year != date.last_month.year
       year_total = calc.calc_socail_game_total_of_year(date.last_month.year)
       message = "#{message}\n#{Settings.twitter.year_result_base}#{year_total.to_s(:delimited)}円"
     end
