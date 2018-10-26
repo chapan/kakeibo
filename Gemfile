@@ -64,3 +64,5 @@ gem 'config'
 gem 'bootsnap'
 gem 'twitter'
 gem 'enumerize'
+
+gem 'whenever', :require => false
