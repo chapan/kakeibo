@@ -5,6 +5,16 @@ class CalcManager < Manager
 
   end
 
+  # 指定した年月の課金総額を計算する
+  # param year 年
+  # param month 月
+  # return total 総額
+  def calc_socail_game_total_of_month(year, month)
+    from = Date.new(year, month, 1)
+    to   = from.end_of_month
+    Kakei.where(use_date: from...to, category_id: Category.category_id.social_game.value).sum(:kingaku)
+  end
+
   # 指定した年の課金総額を計算する
   # param year 年
   # return total 総額
@@ -18,8 +28,8 @@ class CalcManager < Manager
   # return [level, exp]
   # level レベル
   # exp 次のレベルまで必要な経験値
-  def calc_twitter_status_param
-    sum_kingaku = calc_socail_game_total_of_year(Date.today.year)
+  def calc_twitter_status_param(sum_kingaku: nil)
+    sum_kingaku = calc_socail_game_total_of_year(Date.today.year) if sum_kingaku.nil?
     level, exp = sum_kingaku.divmod(REQUIRE_EXP)
     [level, REQUIRE_EXP - exp]
   end
