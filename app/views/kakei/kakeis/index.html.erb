@@ -83,7 +83,7 @@
         <th width="70">収入</th>
         <th width="70">出費</th>
         <th width="60">CC</th>
-        <th width="60">　</th>
+        <th width="90">　</th>
       </tr>
     </thead>
 
@@ -101,7 +101,10 @@
           <td style="text-align: right"> <%= if kakei.category.id == 7 || kakei.category.id == 10 then number_to_currency(kakei.kingaku) end %> </td>
           <td style="text-align: right"> <%= unless kakei.category.id == 7 || kakei.category.id == 10 then number_to_currency(kakei.kingaku) end %> </td>
           <td style="text-align: center"> <%= if kakei.credit_flag == 1 then "●" end %> </td>
-          <td style="text-align: center"> <%= link_to '削除', kakei, method: :delete, class: "btn btn-default btn-xs", data: {confirm: "#{kakei.naiyou}:#{kakei.kingaku.to_s}円を削除します。"} %> </td>
+          <td style="text-align: center">
+            <%= link_to '更新', edit_kakei_path(id: kakei.id),  class: "btn btn-default btn-xs" %>
+            <%= link_to '削除', kakei, method: :delete, class: "btn btn-default btn-xs", data: {confirm: "#{kakei.naiyou}:#{kakei.kingaku.to_s}円を削除します。"} %>
+          </td>
         </tr>
         <%
            @summary[kakei.category_id] += kakei.kingaku

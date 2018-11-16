@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     scope module: :kakei do
       get '/', action: :redirect, controller: :kakeis
 
-      resources :kakeis, only: [:index, :create, :destroy] do
+      resources :kakeis, only: [:index, :create, :destroy, :edit, :update] do
         collection do
           get 'summary'
           get ':year/:month', action: :monthly, constraints: {year: /[0-9]{4}/, month: /[0-9]{1,2}/}

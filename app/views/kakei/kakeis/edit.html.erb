@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
+      <%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-top: 10px">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to '戻る', {action: :monthly, year: @kakei.use_date.year, month: @kakei.use_date.month, day: @kakei.use_date.day}, class: "btn btn-default btn-sm" %>　
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <%= form_for @kakei do |f| %>
+    <table class="table-condensed">
+      <tbody>
+      <tr class="form-group form-inline">
+        <th><%= f.label :use_date, '対象年月日' %></th>
+        <td>
+          <%= f.date_select :use_date,
+                            {
+                                start_year: Time.now.year - 2,
+                                end_year: Time.now.year + 2,
+                                use_two_digit_numbers: true,
+                                date_separator: ' / '
+                            }, {class: "form-control"}
+          %>
+        </td>
+      </tr>
+
+      <tr class="form-group">
+        <th><%= f.label :category_id, '分類' %></th>
+        <td><%= f.collection_select :category_id, Category.where(usage: 1), :id, :name, {include_blank: true}, {class: "form-control", required: true} %></td>
+      </tr>
+
+      <tr class="form-group">
+        <th><%= f.label :naiyou, '内容' %></th>
+        <td><%= f.text_field :naiyou, {class: "form-control", required: true} %></td>
+      </tr>
+
+      <tr class="form-group">
+        <th><%= f.label :kingaku, '金額' %></th>
+        <td><%= f.number_field :kingaku, {min: 1, autocomplete: :off, class: "form-control", required: true} %></td>
+      </tr>
+
+      <tr class="form-group form-inline" >
+        <th><%= f.label :credit_flag, 'クレジットカード' %></th>
+        <td><%= f.check_box :credit_flag, {class: "form-control"} %></td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <%= f.submit '更新', name: :regist, class: "btn btn-default btn-sm" %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>

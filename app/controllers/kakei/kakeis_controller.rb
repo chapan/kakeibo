@@ -21,6 +21,37 @@ class Kakei::KakeisController < Kakei::BaseKakeiController
     end
   end
 
+  def edit
+    @kakei = Kakei.find_by(id: params[:id])
+    if @kakei.nil?
+      redirect_to({action: :index}, flash: {notice: "データが存在しません。"})
+    end
+  end
+
+  def update
+
+    @kakei = Kakei.new(kakei_params)
+
+    begin
+      kakei = Kakei.find(params[:id])
+      kakei.use_date = @kakei.use_date
+      kakei.category_id = @kakei.category_id
+      kakei.naiyou = @kakei.naiyou
+      kakei.kingaku = @kakei.kingaku
+      kakei.credit_flag = @kakei.credit_flag
+      kakei.save!
+
+      # ツイッター更新
+      update_twitter_profile if @kakei.category_id == Category.category_id.social_game.value
+
+      redirect_to({action: :monthly, year: @kakei.use_date.year, month: @kakei.use_date.month, day: @kakei.use_date.day}, flash: {notice: "更新しました。"})
+    rescue => ex
+      flash.now[:alert] = ex.message
+      render :edit
+    end
+
+  end
+
   def destroy
     begin
       kakei = Kakei.find(params[:id])
