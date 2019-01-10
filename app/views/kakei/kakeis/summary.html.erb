@@ -20,6 +20,8 @@
       <th style="width: 100px">CC利用額</th>
       <th style="width: 100px">出費合計</th>
       <th style="width: 100px">収入</th>
+      <th style="width: 100px">その他収入</th>
+      <th style="width: 100px">収入合計</th>
     </tr>
     </thead>
 
@@ -39,6 +41,8 @@
           <td style="text-align: right"><%= number_to_currency(month.credit) %></td>
           <td style="text-align: right"><%= number_to_currency(month.total) %></td>
           <td style="text-align: right"><%= number_to_currency(month.sum07) %></td>
+          <td style="text-align: right"><%= number_to_currency(month.sum10) %></td>
+          <td style="text-align: right"><%= number_to_currency(month.sum07 + month.sum10) %></td>
         </tr>
     <% end %>
     </tbody>
@@ -55,6 +59,8 @@
       <th style="width: 100px">CC利用額</th>
       <th style="width: 100px">出費合計</th>
       <th style="width: 100px">収入</th>
+      <th style="width: 100px">その他収入</th>
+      <th style="width: 100px">収入合計</th>
     </tr>
     </tfoot>
 

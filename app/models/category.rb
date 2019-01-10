@@ -39,7 +39,7 @@ class Category < ActiveHash::Base
       {id: category_id.zappi.value, name: '雑費',  usage: 1, sort: 50},
       {id: category_id.seikatsu.value, name: '諸生活費', usage: 1, sort: 60},
       {id: category_id.shunyu.value, name: '収入',  usage: 1, sort: 70},
-      {id: category_id.other_shunyu.value, name: 'その他収入',  usage: 0, sort: 75},
+      {id: category_id.other_shunyu.value, name: 'その他収入',  usage: 1, sort: 75},
       {id: category_id.hensai.value, name: '返済',  usage: 1, sort: 80},
   ]
 

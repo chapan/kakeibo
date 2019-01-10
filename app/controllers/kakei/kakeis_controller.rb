@@ -91,7 +91,8 @@ SELECT
   SUM(CASE WHEN credit_flag = 1 THEN kingaku ELSE 0 END) AS credit,
   SUM(CASE WHEN category_id <> 7 and category_id <> 10 THEN kingaku ELSE 0 END) AS total,
 
-  SUM(CASE WHEN category_id = 7 or category_id = 10 THEN kingaku ELSE 0 END) AS sum07
+  SUM(CASE WHEN category_id = 7 THEN kingaku ELSE 0 END) AS sum07,
+  SUM(CASE WHEN category_id = 10 THEN kingaku ELSE 0 END) AS sum10
 FROM
   kakeis
 GROUP BY DATE_FORMAT(use_date, '%Y-%m')
@@ -135,7 +136,8 @@ SELECT
   SUM(CASE WHEN credit_flag = 1 THEN kingaku ELSE 0 END) AS credit,
   SUM(CASE WHEN category_id <> 7 and category_id <> 10 THEN kingaku ELSE 0 END) AS total,
 
-  SUM(CASE WHEN category_id = 7 or category_id = 10 THEN kingaku ELSE 0 END) AS sum07
+  SUM(CASE WHEN category_id = 7 THEN kingaku ELSE 0 END) AS sum07,
+  SUM(CASE WHEN category_id = 10 THEN kingaku ELSE 0 END) AS sum10
 
 FROM
   kakeis
