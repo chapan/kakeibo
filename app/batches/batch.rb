@@ -3,7 +3,7 @@ class Batch
 
   def initialize(log_file_base:)
     @log_dir = "#{Rails.root}/log"
-    @logger = Logger.new("#{@log_dir}/#{log_file_base}_#{Date.today.strftime('%Y%m%d')}.log")
+    @logger = Logger.new("#{@log_dir}/#{log_file_base}.log")
 
     # SQLログをログに吐く
     if Rails.env.development?
