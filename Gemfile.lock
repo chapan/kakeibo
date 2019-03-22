@@ -60,9 +60,9 @@ GEM
       debug_inspector (>= 0.0.1)
     bootsnap (1.4.1)
       msgpack (~> 1.0)
-    bootstrap-sass (3.3.7)
+    bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+      sassc (>= 2.0.0)
     buftok (0.2.0)
     builder (3.2.3)
     chronic (0.10.2)
@@ -220,11 +220,9 @@ GEM
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
     ruby_dep (1.5.0)
-    sass (3.7.3)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
+    sassc (2.0.1)
+      ffi (~> 1.9)
+      rake
     simple_oauth (0.3.1)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -285,7 +283,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootsnap
-  bootstrap-sass (~> 3.3.5)
+  bootstrap-sass (>= 3.4.1)
   coffee-rails
   config
   enumerize

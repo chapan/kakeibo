@@ -7,7 +7,7 @@ gem 'rails', '5.2.2.1'
 gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'bootstrap-sass', '~> 3.3.5'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'autoprefixer-rails', '~> 8.6.5'
 
 # Use Uglifier as compressor for JavaScript assets
