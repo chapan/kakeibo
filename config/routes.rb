@@ -11,6 +11,8 @@ Rails.application.routes.draw do
           get 'yearly'
         end
       end
+
+      resources :monthly_payments, only: [:index, :create, :destroy, :edit, :update]
     end
 
     scope module: :twitter do

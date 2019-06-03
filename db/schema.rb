@@ -10,17 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108081841) do
+ActiveRecord::Schema.define(version: 2019_06_03_011514) do
 
-  create_table "kakeis", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "kakeis", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.date "use_date", null: false
-    t.integer "category_id"
+    t.integer "category_id", null: false
     t.string "naiyou", null: false
     t.integer "kingaku", null: false
     t.integer "credit_flag", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_kakeis_on_category_id"
+  end
+
+  create_table "monthly_payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.string "naiyou", null: false
+    t.integer "kingaku", null: false
+    t.integer "credit_flag", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_monthly_payments_on_category_id"
   end
 
 end

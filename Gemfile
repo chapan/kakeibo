@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 
+gem 'sassc-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.2.1'
 # Use mysql as the database for Active Record
@@ -40,18 +41,11 @@ group :development do
   gem 'binding_of_caller'
   gem 'annotate'
   gem 'listen'
-end
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-#  gem 'byebug'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
 end
 
 group :test do
@@ -61,8 +55,8 @@ end
 
 gem 'active_hash'
 gem 'config'
-gem 'bootsnap'
+gem 'bootsnap', require: false
 gem 'twitter'
 gem 'enumerize'
 
-gem 'whenever', :require => false
+gem 'whenever', require: false

@@ -1,10 +1,9 @@
 # == Schema Information
 #
-# Table name: kakeis
+# Table name: monthly_payments
 #
-#  id          :integer          not null, primary key
-#  use_date    :date             not null
-#  category_id :integer
+#  id          :bigint(8)        not null, primary key
+#  category_id :integer          not null
 #  naiyou      :string(255)      not null
 #  kingaku     :integer          not null
 #  credit_flag :integer          default(0)
@@ -13,8 +12,10 @@
 #
 
 FactoryBot.define do
-  factory :kakei do
-
+  factory :monthly_payment do
+    category_id { 1 }
+    naiyou { "MyString" }
+    kingaku { 1 }
+    credit_flag { 1 }
   end
-
 end

@@ -10,4 +10,6 @@ set :environment, :production
 every '0 0 1 * *' do
   # 自動ツイートバッチを実行
   runner "Batch::AutoTweet.new.execute"
+  # 月額支払い登録
+  runner "Batch::MonthlyPaymentRegister.new.execute"
 end

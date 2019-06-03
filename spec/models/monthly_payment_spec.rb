@@ -1,10 +1,9 @@
 # == Schema Information
 #
-# Table name: kakeis
+# Table name: monthly_payments
 #
-#  id          :integer          not null, primary key
-#  use_date    :date             not null
-#  category_id :integer
+#  id          :bigint(8)        not null, primary key
+#  category_id :integer          not null
 #  naiyou      :string(255)      not null
 #  kingaku     :integer          not null
 #  credit_flag :integer          default(0)
@@ -14,6 +13,6 @@
 
 require 'rails_helper'
 
-RSpec.describe Kakei, :type => :model do
+RSpec.describe MonthlyPayment, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
