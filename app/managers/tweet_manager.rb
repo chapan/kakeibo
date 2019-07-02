@@ -43,4 +43,18 @@ class TweetManager < Manager
     end
   end
 
+  def get_tweet_list(user_id, since_id: nil, max_id: nil)
+    options = {}
+    options["exclude_replies"] = false
+    options["include_rts"] = true
+    options["count"] = 200
+    options["max_id"] = max_id if max_id.present?
+    options["since_id"] = since_id if since_id.present?
+    @twitter.user_timeline(user_id, options)
+  end
+
+  def delete_tweet(ids)
+    @twitter.destroy_status(ids)
+  end
+
 end

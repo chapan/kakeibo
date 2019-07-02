@@ -13,3 +13,14 @@ every '0 0 1 * *' do
   # 月額支払い登録
   runner "Batch::MonthlyPaymentRegister.new.execute"
 end
+
+# 1時間毎に
+every '5 0/1 * * *' do
+  # ツイート収集バッチを実行
+  runner "Batch::AutoCollectTweets.new.execute"
+end
+
+every '10 0/1 * * *' do
+  # ツイート削除バッチを実行
+  runner "Batch::AutoDeleteTweet.new.execute"
+end

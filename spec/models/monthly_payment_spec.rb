@@ -2,7 +2,7 @@
 #
 # Table name: monthly_payments
 #
-#  id          :bigint(8)        not null, primary key
+#  id          :bigint           not null, primary key
 #  category_id :integer          not null
 #  naiyou      :string(255)      not null
 #  kingaku     :integer          not null
