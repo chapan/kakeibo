@@ -15,12 +15,12 @@ every '0 0 1 * *' do
 end
 
 # 1時間毎に
-every '5 0/1 * * *' do
+every '5 * * * *' do
   # ツイート収集バッチを実行
   runner "Batch::AutoCollectTweets.new.execute"
 end
 
-every '10 0/1 * * *' do
+every '10 * * * *' do
   # ツイート削除バッチを実行
   runner "Batch::AutoDeleteTweet.new.execute"
 end
