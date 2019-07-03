@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_02_061104) do
+ActiveRecord::Schema.define(version: 2019_07_03_001459) do
 
   create_table "kakeis", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.date "use_date", null: false
@@ -35,11 +35,12 @@ ActiveRecord::Schema.define(version: 2019_07_02_061104) do
 
   create_table "tweets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "tweet_id"
-    t.text "body"
+    t.text "body", collation: "utf8mb4_general_ci"
     t.datetime "tweeted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.string "error"
     t.index ["tweet_id"], name: "index_tweets_on_tweet_id", unique: true
   end
 
