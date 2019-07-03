@@ -1,0 +1,39 @@
+## settings.local.yml に以下が必要
+## データベース接続情報
+#database:
+#  username:
+#  password:
+#
+## secrets.yml参照
+#secret:
+#  development:
+#  test:
+#  production:
+#
+## ツイッター関連利用
+#twitter:
+#  # APIキー
+#  consumer_key:
+#  consumer_secret:
+#  access_token:
+#  access_token_secret:
+#
+#  # プレミアムサーチ用エンドポイント
+#  endpoint_30days:
+#  endpoint_fullarchive:
+#
+#  # ツイッターのユーザID（ツイート取得用、スクリーンIDではなく数値の方）
+#  user_id:
+#
+#  # ツイート取り込みに利用するファイル名、フルパスで
+#  json_file_name:
+#  # ツイート保存期間 これを過ぎたツイートを自動削除
+#  expire_days:
+#
+#  # プロフィール自動更新用
+#  name_base:
+#  description_base:
+#
+#  # 課金額自動ツイート用
+#  month_result_base:
+#  year_result_base:
