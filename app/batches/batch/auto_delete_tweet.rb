@@ -14,7 +14,7 @@ class Batch::AutoDeleteTweet < Batch
     delete_tweets = ::Tweet.where(deleted_at: nil, error: nil)
                         .where("tweeted_at < ?", delete_date)
                         .order(:tweeted_at)
-                        .limit(100)
+                        .limit(Settings.twitter.auto_delete_limit)
 
     delete_tweets.each do |tweet|
       @logger.debug("削除予定:#{tweet.tweet_id}")
@@ -29,6 +29,7 @@ class Batch::AutoDeleteTweet < Batch
         tweet.error = ex.message
         tweet.save!
       end
+      sleep 1
     end
   end
 
