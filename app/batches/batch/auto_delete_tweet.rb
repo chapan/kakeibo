@@ -26,6 +26,7 @@ class Batch::AutoDeleteTweet < Batch
         tweet.save!
       rescue => ex
         @logger.error("エラー:#{ex.message}")
+        raise(ex) if ex.code == 500
         tweet.error = ex.message
         tweet.save!
       end
