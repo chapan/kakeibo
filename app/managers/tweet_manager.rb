@@ -20,6 +20,18 @@ class TweetManager < Manager
     end
   end
 
+  def update_twitter_profile
+    days, sum = CalcManager.new.calc_twitter_status_param
+    name_base = Settings.twitter.name_base
+    name = name_base.sub(/_DAY_/, days.to_s)
+    description = "#{Settings.twitter.description_base}#{sum}"
+
+    # プロフィール更新
+    update_profile(name: name, description: description)
+
+  end
+
+
   # プロフィールの変更
   # 指定されたもののみ更新する
   # name        名前

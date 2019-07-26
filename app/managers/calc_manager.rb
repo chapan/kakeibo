@@ -24,13 +24,15 @@ class CalcManager < Manager
     Kakei.where(use_date: from...to, category_id: Category.category_id.social_game.value).sum(:kingaku)
   end
 
-  # ツイッター用のレベルとレベルアップに必要な経験値を計算し返す
-  # return [level, exp]
-  # level レベル
-  # exp 次のレベルまで必要な経験値
-  def calc_twitter_status_param(sum_kingaku: nil)
-    sum_kingaku = calc_socail_game_total_of_year(Date.today.year) if sum_kingaku.nil?
-    level, exp = sum_kingaku.divmod(REQUIRE_EXP)
-    [level, REQUIRE_EXP - exp]
+  # ツイッター更新用のパラメータを計算し返す
+  # return [days, sum_kingaku]
+  # days 課金に負けなかった日数
+  # sum_kingaku 年内合計額
+  def calc_twitter_status_param
+    day = Kakei.where(category_id: Category.category_id.social_game.value).maximum(:use_date)
+    today = Date.today
+    days = today - day
+    sum_kingaku = calc_socail_game_total_of_year(Date.today.year)
+    [days.to_i, sum_kingaku]
   end
 end

@@ -30,7 +30,7 @@
 #  # ツイート保存期間 これを過ぎたツイートを自動削除
 #  expire_days:
 #  # 一回の削除バッチで削除する上限
-#  auto_delete_limit: 500
+#  auto_delete_limit:
 #
 #  # プロフィール自動更新用
 #  name_base:

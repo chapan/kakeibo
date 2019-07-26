@@ -175,14 +175,8 @@ ORDER BY DATE_FORMAT(use_date, '%Y') desc
   end
 
   def update_twitter_profile
-    charge_lv, charge_exp = CalcManager.new.calc_twitter_status_param
-    name = Settings.twitter.name_base + charge_lv.to_s
-    description = Settings.twitter.description_base + (charge_exp).to_s
-
-    twitter = TweetManager.new
-
     # プロフィール更新
-    twitter.update_profile(name: name, description: description)
+    TweetManager.new.update_twitter_profile
 
   end
 end
