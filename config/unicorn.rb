@@ -6,7 +6,7 @@ stderr_path       "#{APP_ROOT}/log/unicorn.log"
 stdout_path       "#{APP_ROOT}/log/unicorn.log"
 
 #listen "/tmp/unicorn.sock"
-listen 3000
+listen "127.0.0.1:3000"
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 4)
 timeout 30
 
