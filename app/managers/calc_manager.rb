@@ -12,7 +12,7 @@ class CalcManager < Manager
   def calc_socail_game_total_of_month(year, month)
     from = Date.new(year, month, 1)
     to   = from.end_of_month
-    Kakei.where(use_date: from...to, category_id: Category.category_id.social_game.value).sum(:kingaku)
+    Kakei.where(use_date: from..to, category_id: Category.category_id.social_game.value).sum(:kingaku)
   end
 
   # 指定した年の課金総額を計算する
@@ -21,7 +21,7 @@ class CalcManager < Manager
   def calc_socail_game_total_of_year(year)
     from = Date.new(year, 1, 1)
     to   = from.end_of_year
-    Kakei.where(use_date: from...to, category_id: Category.category_id.social_game.value).sum(:kingaku)
+    Kakei.where(use_date: from..to, category_id: Category.category_id.social_game.value).sum(:kingaku)
   end
 
   # ツイッター更新用のパラメータを計算し返す
