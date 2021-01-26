@@ -21,6 +21,10 @@ Rails.application.routes.draw do
         post 'update_profile'
       end
     end
+
+    scope module: :grbl do
+      resource :tsuyobaha, only: [:show, :update]
+    end
   end
 
   # scope :abare, module: :twitter do

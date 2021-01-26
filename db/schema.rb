@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_03_001459) do
+ActiveRecord::Schema.define(version: 2021_01_26_023932) do
+
+  create_table "gold_bar_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", comment: "敵の名前"
+    t.string "box", comment: "箱名"
+    t.date "drop_date", comment: "入手日"
+  end
+
+  create_table "gold_bars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "enemy_id", comment: "敵のID"
+    t.string "name", comment: "敵の名前"
+    t.integer "total_count", default: 0, comment: "討伐数"
+    t.integer "red_box", default: 0, comment: "ヒヒイロカネ(赤箱)"
+    t.integer "gold_box", default: 0, comment: "ヒヒイロカネ(金箱)"
+    t.integer "blue_box", default: 0, comment: "青箱"
+    t.integer "eikan", default: 0, comment: "栄冠(青箱)"
+    t.integer "hagyo", default: 0, comment: "覇業(青箱)"
+    t.integer "shigoku", default: 0, comment: "至極(青箱)"
+    t.integer "gold_bar", default: 0, comment: "ヒヒイロカネ(青箱)"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "kakeis", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.date "use_date", null: false

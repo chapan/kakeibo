@@ -13,3 +13,13 @@
 # Category.create(name:"諸生活費", sort: 6)
 # Category.create(name:"返済", sort: 7)
 # Category.create(name:"収入", sort: 8)
+GoldBar.create(enemy_id: 1, name:"つよばは" )
+GoldBar.create(enemy_id: 2, name:"あるばは" )
+GoldBar.create(enemy_id: 3, name:"黒黄" )
+GoldBar.create(enemy_id: 4, name:"アーカーシャ／グランデ" )
+
+GoldBarHistory.create(name: "あるばは", box: "赤箱", drop_date: "2018-08-25")
+GoldBarHistory.create(name: "あるばは", box: "金箱", drop_date: "2019-01-01")
+GoldBarHistory.create(name: "黒黄", box: "赤箱", drop_date: "2020-01-01")
+GoldBarHistory.create(name: "つよばは", box: "赤箱", drop_date: "2021-01-02")
+GoldBarHistory.create(name: "あるばは", box: "赤箱", drop_date: "2021-01-16")

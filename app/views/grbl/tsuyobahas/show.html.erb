@@ -1,0 +1,114 @@
+<% @title="ヒヒイロカネカウンター" %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
+      <%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-top: 10px">
+  <div class="row">
+    <div class="col-xs-12">
+      つよばは
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to 'スカ', tsuyobaha_path(counter: 1), method: :patch, class: "btn btn-default btn-sm" %>　
+      <%= link_to '赤ヒヒ', tsuyobaha_path(counter: 2), method: :patch, class: "btn btn-default btn-sm" %>　
+      <%= link_to '青ヒヒ', tsuyobaha_path(counter: 3), method: :patch, class: "btn btn-default btn-sm" %>　
+      <%= link_to '栄冠', tsuyobaha_path(counter: 4), method: :patch, class: "btn btn-default btn-sm" %>　
+      <%= link_to '覇業', tsuyobaha_path(counter: 5), method: :patch, class: "btn btn-default btn-sm" %>　
+      <%= link_to '至極', tsuyobaha_path(counter: 6), method: :patch, class: "btn btn-default btn-sm" %>　
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      その他
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to 'ある赤', tsuyobaha_path(counter: 7), method: :patch, class: "btn btn-default btn-sm" %>　
+      <%= link_to 'ある金', tsuyobaha_path(counter: 8), method: :patch, class: "btn btn-default btn-sm" %>　
+      <%= link_to '黒黄', tsuyobaha_path(counter: 9), method: :patch, class: "btn btn-default btn-sm" %>　
+      <%= link_to 'アーカーシャ', tsuyobaha_path(counter: 10), method: :patch, class: "btn btn-default btn-sm" %>　
+      <%= link_to 'グランデ', tsuyobaha_path(counter: 11), method: :patch, class: "btn btn-default btn-sm" %>　
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-top: 20px;margin-bottom: 20px">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= "つよばはサマリー 2021/01/26〜" %>
+    </div>
+  </div>
+  <table class="table-bordered table-striped table-hover table-condensed" style="background-color: white;border: solid 1px #000000">
+    <tbody>
+    <tr>
+      <td width="100">総討伐数</td>
+      <td width="60" style="text-align: right"> <%= @gold_bar_tsuyobaha.total_count %>  </td>
+    </tr>
+    <tr>
+      <td>赤ヒヒ</td>
+      <td style="text-align: right"> <%= @gold_bar_tsuyobaha.red_box %>  </td>
+    </tr>
+    <tr>
+      <td>青箱</td>
+      <td style="text-align: right"> <%= @gold_bar_tsuyobaha.blue_box %>  </td>
+    </tr>
+    <tr>
+      <td>栄冠</td>
+      <td style="text-align: right"> <%= @gold_bar_tsuyobaha.eikan %>  </td>
+    </tr>
+    <tr>
+      <td>覇業</td>
+      <td style="text-align: right"> <%= @gold_bar_tsuyobaha.hagyo %>  </td>
+    </tr>
+    <tr>
+      <td>至極</td>
+      <td style="text-align: right"> <%= @gold_bar_tsuyobaha.shigoku %>  </td>
+    </tr>
+    <tr>
+      <td>青ヒヒ</td>
+      <td style="text-align: right"> <%= @gold_bar_tsuyobaha.gold_bar %>  </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container" style="margin-top: 20px">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= "獲得履歴" %>
+    </div>
+  </div>
+  <table class="table-bordered table-striped table-hover table-condensed" style="background-color: white;border: solid 1px #000000">
+    <thead>
+    <tr>
+      <th width="100">日付</th>
+      <th width="200">場所</th>
+      <th width="100">箱</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @gold_bar_historys.each do |history| %>
+      <tr>
+        <td style="text-align: center;white-space: nowrap"> <%= history.drop_date %> </td>
+        <td style="white-space: nowrap"> <%= history.name %> </td>
+        <td style="text-align: center;white-space: nowrap"> <%= history.box %> </td>
+      </tr>
+    <% end %>
+    </tbody>
+    <tfoor>
+      <tr>
+        <td colspan="2" style="text-align: center">合計</td>
+        <td style="text-align: center"><%= number_to_currency(@gold_bar_historys.count) %>個</td>
+      </tr>
+    </tfoor>
+  </table>
+</div>
