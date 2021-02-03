@@ -61,27 +61,27 @@
     <tr>
       <td>青箱</td>
       <td style="text-align: right"> <%= @gold_bar_tsuyobaha.blue_box %> </td>
-      <td width="60" style="text-align: right"> <%= number_to_percentage(100 * @gold_bar_tsuyobaha.blue_box / @gold_bar_tsuyobaha.total_count, precision: 2) %> </td>
+      <td width="60" style="text-align: right"> <%= number_to_percentage(100 * @gold_bar_tsuyobaha.blue_box / @gold_bar_tsuyobaha.total_count.to_f, precision: 2) %> </td>
     </tr>
     <tr>
       <td>栄冠</td>
       <td style="text-align: right"> <%= @gold_bar_tsuyobaha.eikan %>  </td>
-      <td width="60" style="text-align: right"> <%= number_to_percentage(100 * @gold_bar_tsuyobaha.eikan / @gold_bar_tsuyobaha.blue_box, precision: 2) %> </td>
+      <td width="60" style="text-align: right"> <%= number_to_percentage(100 * @gold_bar_tsuyobaha.eikan / @gold_bar_tsuyobaha.blue_box.to_f, precision: 2) %> </td>
     </tr>
     <tr>
       <td>覇業</td>
       <td style="text-align: right"> <%= @gold_bar_tsuyobaha.hagyo %>  </td>
-      <td width="60" style="text-align: right"> <%= number_to_percentage(100 * @gold_bar_tsuyobaha.hagyo / @gold_bar_tsuyobaha.blue_box, precision: 2) %> </td>
+      <td width="60" style="text-align: right"> <%= number_to_percentage(100 * @gold_bar_tsuyobaha.hagyo / @gold_bar_tsuyobaha.blue_box.to_f, precision: 2) %> </td>
     </tr>
     <tr>
       <td>至極</td>
       <td style="text-align: right"> <%= @gold_bar_tsuyobaha.shigoku %>  </td>
-      <td width="60" style="text-align: right"> <%= number_to_percentage(100 * @gold_bar_tsuyobaha.shigoku / @gold_bar_tsuyobaha.blue_box, precision: 2) %> </td>
+      <td width="60" style="text-align: right"> <%= number_to_percentage(100 * @gold_bar_tsuyobaha.shigoku / @gold_bar_tsuyobaha.blue_box.to_f, precision: 2) %> </td>
     </tr>
     <tr>
       <td>青ヒヒ</td>
       <td style="text-align: right"> <%= @gold_bar_tsuyobaha.gold_bar %>  </td>
-      <td width="60" style="text-align: right"> <%= number_to_percentage(100 * @gold_bar_tsuyobaha.gold_bar / @gold_bar_tsuyobaha.blue_box, precision: 2) %> </td>
+      <td width="60" style="text-align: right"> <%= number_to_percentage(100 * @gold_bar_tsuyobaha.gold_bar / @gold_bar_tsuyobaha.blue_box.to_f, precision: 2) %> </td>
     </tr>
     </tbody>
   </table>
