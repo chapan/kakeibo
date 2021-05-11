@@ -2,6 +2,7 @@ class Grbl::TsuyobahasController < BaseController
   def show
     @gold_bar_tsuyobaha = GoldBar.find_by(enemy_id: 1)
     @gold_bar_historys = GoldBarHistory.all.order(:drop_date)
+    @gold_bar_sum = GoldBarHistory.group(:name, :box).order(:name, :box).count
   end
   def update
     counter = params[:counter].to_i

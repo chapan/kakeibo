@@ -95,6 +95,30 @@
 <div class="container" style="margin-top: 20px">
   <div class="row">
     <div class="col-xs-12">
+      <%= "獲得累計" %>
+    </div>
+  </div>
+  <table class="table-bordered table-striped table-hover table-condensed" style="background-color: white;border: solid 1px #000000">
+    <thead>
+    <tr>
+      <% @gold_bar_sum.each do |sum| %>
+        <th><%= "#{sum[0][0]} #{sum[0][1]}" %></th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <% @gold_bar_sum.each do |sum| %>
+        <td style="text-align: right;white-space: nowrap"> <%= sum[1] %> </td>
+      <% end %>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container" style="margin-top: 20px">
+  <div class="row">
+    <div class="col-xs-12">
       <%= "獲得履歴" %>
     </div>
   </div>
